@@ -1,0 +1,25 @@
+{
+  "name": "DiabetesTracker",
+  "version": "1.0.0",
+  "description": "Diabetes tracker for clinicians to track diabetes records and health of patients.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/surenfernando/DiabetesTracker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/surenfernando/DiabetesTracker/issues"
+  },
+  "homepage": "https://github.com/surenfernando/DiabetesTracker#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-handlebars": "^6.0.7",
+    "handlebars": "^4.7.7"
+  }
+}
