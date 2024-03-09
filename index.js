@@ -13,8 +13,6 @@ app.use(express.static("public"));
 
 mongoose.connect(process.env.MONGODB_URI);
 
-
-
 const userSchema = {
   name : String,
   password : String,
@@ -51,6 +49,7 @@ app.get("/", (req, res) => {
 let port = process.env.PORT;
 if (port == null || port == "") {
   port = 3000;
+  console.log(port);
 }
 
 app.listen(port, () => {
