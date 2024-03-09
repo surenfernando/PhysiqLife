@@ -8,6 +8,7 @@ dotenv.config();
 // Check if MongoDB URI is present in environment variables
 
 
+const MONGODB_URI = "mongodb+srv://admin-suren:testingDB123@dbtrackercluster.qlzgzdj.mongodb.net/Users?retryWrites=true&w=majority&appName=dbTrackerCluster"
 
 const app = express();
 
@@ -16,43 +17,40 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 
+mongoose.connect(MONGODB_URI);
 
-// mongoose.connect(process.env.MONGODB_URI);
+const userSchema = {
+  name : String,
+  password : String,
+}
 
+const User = mongoose.model("User", userSchema);
 
+const user1 = new User({
+  name: "Alice",
+  password: "password123"
+});
 
-// const userSchema = {
-//   name : String,
-//   password : String,
-// }
+const user2 = new User({
+  name: "Bob",
+  password: "securepassword"
+});
 
-// const User = mongoose.model("User", userSchema);
-
-// const user1 = new User({
-//   name: "Alice",
-//   password: "password123"
-// });
-
-// const user2 = new User({
-//   name: "Bob",
-//   password: "securepassword"
-// });
-
-// const user3 = new User({
-//   name: "Charlie",
-//   password: "123456"
-// });
+const user3 = new User({
+  name: "Charlie",
+  password: "123456"
+});
 
 
 // const testUsers = [user1, user2, user3];
 // User.insertMany(testUsers);
 
 app.get("/", async (req, res) => {
-  // const result = await User.find();
-  // console.log(result);
+  const result = await User.find();
+  console.log(result);
   res.render("index", { 
-    content: "Waiting for data..."
-    // data: result
+    content: "Waiting for data...",
+    data: result
   });
 });
 
