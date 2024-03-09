@@ -39,10 +39,10 @@ const user3 = new User({
 
 
 const testUsers = [user1, user2, user3];
-User.insertMany(testUsers);
+// User.insertMany(testUsers);
 
 app.get("/", (req, res) => {
-  res.render("index.ejs", { 
+  res.render("index", { 
     content: "Waiting for data..." 
   });
 });
