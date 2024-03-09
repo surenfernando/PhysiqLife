@@ -8,7 +8,7 @@ dotenv.config();
 // Check if MongoDB URI is present in environment variables
 
 
-const MONGODB_URI = "mongodb+srv://admin-suren:testingDB123@dbtrackercluster.qlzgzdj.mongodb.net/Users?retryWrites=true&w=majority&appName=dbTrackerCluster"
+// const MONGODB_URI = "mongodb+srv://admin-suren:testingDB123@dbtrackercluster.qlzgzdj.mongodb.net/Users?retryWrites=true&w=majority&appName=dbTrackerCluster"
 
 const app = express();
 
@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 
-mongoose.connect(MONGODB_URI);
+mongoose.connect(process.env.MONGODB_URI);
 
 const userSchema = {
   name : String,
