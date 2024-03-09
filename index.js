@@ -2,18 +2,19 @@ import express from "express";
 import axios from "axios";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
+import * as dotenv from "dotenv";
 
 
+dotenv.config();
 const app = express();
-const port = 3000;
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
+mongoose.connect(process.env.MONGODB_URI);
 
 
-mongoose.connect("mongodb+srv://admin-suren:testingDB123@dbtrackercluster.qlzgzdj.mongodb.net/Users?retryWrites=true&w=majority&appName=dbTrackerCluster/");
 
 const userSchema = {
   name : String,
@@ -48,8 +49,11 @@ app.get("/", (req, res) => {
 });
 
 
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3000;
+}
 
-
-app.listen(process.env.PORT || 3000, () => {
-  console.log(`Server is running on port ${port}`);
+app.listen(port, () => {
+  console.log(`Server is running. All a GO!!`);
 });
