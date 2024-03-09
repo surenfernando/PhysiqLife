@@ -6,10 +6,7 @@ import * as dotenv from "dotenv";
 
 dotenv.config();
 // Check if MongoDB URI is present in environment variables
-if (!process.env.MONGODB_URI) {
-  console.error("MongoDB URI is not defined in environment variables.");
-  process.exit(1);
-}
+
 
 
 const app = express();
@@ -20,42 +17,42 @@ app.use(express.static("public"));
 
 
 
-mongoose.connect(process.env.MONGODB_URI);
+// mongoose.connect(process.env.MONGODB_URI);
 
 
 
-const userSchema = {
-  name : String,
-  password : String,
-}
+// const userSchema = {
+//   name : String,
+//   password : String,
+// }
 
-const User = mongoose.model("User", userSchema);
+// const User = mongoose.model("User", userSchema);
 
-const user1 = new User({
-  name: "Alice",
-  password: "password123"
-});
+// const user1 = new User({
+//   name: "Alice",
+//   password: "password123"
+// });
 
-const user2 = new User({
-  name: "Bob",
-  password: "securepassword"
-});
+// const user2 = new User({
+//   name: "Bob",
+//   password: "securepassword"
+// });
 
-const user3 = new User({
-  name: "Charlie",
-  password: "123456"
-});
+// const user3 = new User({
+//   name: "Charlie",
+//   password: "123456"
+// });
 
 
-const testUsers = [user1, user2, user3];
+// const testUsers = [user1, user2, user3];
 // User.insertMany(testUsers);
 
 app.get("/", async (req, res) => {
-  const result = await User.find();
+  // const result = await User.find();
   console.log(result);
   res.render("index", { 
-    content: "Waiting for data...",
-    data: result
+    content: "Waiting for data..."
+    // data: result
   });
 });
 
