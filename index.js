@@ -5,13 +5,24 @@ import * as dotenv from "dotenv";
 
 
 dotenv.config();
+// Check if MongoDB URI is present in environment variables
+if (!process.env.MONGODB_URI) {
+  console.error("MongoDB URI is not defined in environment variables.");
+  process.exit(1);
+}
+
+
 const app = express();
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
+
+
 mongoose.connect(process.env.MONGODB_URI);
+
+
 
 const userSchema = {
   name : String,
@@ -39,9 +50,12 @@ const user3 = new User({
 const testUsers = [user1, user2, user3];
 // User.insertMany(testUsers);
 
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
+  const result = await User.find();
+  console.log(result);
   res.render("index", { 
-    content: "Waiting for data..." 
+    content: "Waiting for data...",
+    data: result
   });
 });
 
