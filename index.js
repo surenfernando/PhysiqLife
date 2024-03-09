@@ -49,7 +49,7 @@ app.use(express.static("public"));
 
 app.get("/", async (req, res) => {
   // const result = await User.find();
-  console.log(result);
+  // console.log(result);
   res.render("index", { 
     content: "Waiting for data..."
     // data: result
