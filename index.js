@@ -3,42 +3,20 @@ import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import * as dotenv from "dotenv";
 
+import { Client } from "./models/index.js";
 
 dotenv.config();
+
 const app = express();
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-
 mongoose.connect(process.env.MONGODB_URI);
 
-const userSchema = {
-  name : String,
-  password : String,
-}
-
-const User = mongoose.model("User", userSchema);
-
-const user1 = new User({
-  name: "Alice",
-  password: "password123"
-});
-
-const user2 = new User({
-  name: "Bob",
-  password: "securepassword"
-});
-
-const user3 = new User({
-  name: "Charlie",
-  password: "123456"
-});
-
-
 app.get("/", async (req, res) => {
-  const result = await User.find();
+  const result = await Client.find();
   console.log(result);
   res.render("index", { 
     content: "Waiting for data...",
