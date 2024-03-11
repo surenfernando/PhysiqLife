@@ -18,10 +18,7 @@ mongoose.connect(process.env.MONGODB_URI);
 app.get("/", async (req, res) => {
   const result = await Client.find();
   console.log(result);
-  res.render("index", { 
-    content: "Waiting for data...",
-    data: result
-  });
+  res.render("login");
 });
 
 
