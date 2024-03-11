@@ -5,11 +5,6 @@ import * as dotenv from "dotenv";
 
 
 dotenv.config();
-// Check if MongoDB URI is present in environment variables
-
-
-// const MONGODB_URI = "mongodb+srv://admin-suren:testingDB123@dbtrackercluster.qlzgzdj.mongodb.net/Users?retryWrites=true&w=majority&appName=dbTrackerCluster"
-
 const app = express();
 
 app.set('view engine', 'ejs');
@@ -18,7 +13,6 @@ app.use(express.static("public"));
 
 
 mongoose.connect(process.env.MONGODB_URI);
-console.log(process.env.MONGODB_URI);
 
 const userSchema = {
   name : String,
@@ -42,9 +36,6 @@ const user3 = new User({
   password: "123456"
 });
 
-
-// const testUsers = [user1, user2, user3];
-// User.insertMany(testUsers);
 
 app.get("/", async (req, res) => {
   const result = await User.find();
