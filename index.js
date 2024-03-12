@@ -9,7 +9,7 @@ dotenv.config();
 
 const app = express();
 
-app.set('view engine', 'ejs');
+app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
@@ -20,7 +20,6 @@ app.get("/", async (req, res) => {
   console.log(result);
   res.render("login");
 });
-
 
 let port = process.env.PORT;
 if (port == null || port == "") {
