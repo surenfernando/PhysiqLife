@@ -17,6 +17,20 @@ body {
   height: 100vh;
 }
 
+.logo-container {
+  text-align: center;
+  margin-top: 10vh;
+}
+
+.logo-container h1 {
+  color: #e2e2e2;
+  font-size: 60px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+
+
+
 
 .canvas-head {
   width: 100%;
@@ -45,7 +59,7 @@ body {
   position: absolute;
   isolation: isolate;
   padding: 0;
-  z-index: -2;
+  z-index: -1;
 }
 
 .canvas-container-f {
