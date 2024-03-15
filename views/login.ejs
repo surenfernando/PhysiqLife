@@ -10,50 +10,63 @@
 </head>
 
 <body>
-
+    <header class="canvas-head">
+        <div class="logo-container">
+            <h1>PhysiqLife</h1>
+        </div>
+        <div class="canvas-container-h">
+            <canvas id="canv-h" width="32" height="32"></canvas>
+        </div>
+    </header>
+    
     <div class="container" id="container">
         <div class="form-container sign-up">
-            <form>
-                <h1>Sign Up</h1>
-                <span>Enter your details</span>
-                <input type="firstName" placeholder="First Name">
-                <input type="lastName" placeholder="Last Name">
-                <input type="DoB" placeholder="DoB">
-                <input type="email" placeholder="Email">
-                <input type="password" placeholder="Password">
-                <button>Sign Up</button>
+            <form method="POST" action="/signup">
+                <h1>Create Account</h1>
+                <input type="text" placeholder="First Name" name="firstName">
+                <input type="text" placeholder="Last Name" name="lastName">
+                <input type="date" placeholder="DoB" name="DoB">
+                <input type="email" placeholder="Email" name="username">
+                <input type="password" placeholder="Password" name="password">
+                <button type="submit">Sign Up</button> 
+            </form>            
+        </div>
+        <div class="form-container sign-in">
+            <form method="POST" action="/login">
+                <h1>Login</h1>
+                <input type="email" placeholder="Email" name="username">
+                <input type="password" placeholder="Password" name="password">
+                <a href="#">Forget Your Password?</a>
+                <button>Login</button>
             </form>
         </div>
-        
-    </div>
-
-    <div class="form-container sign-in">
-        <form>
-            <h1>Sign In</h1>
-            <span>Enter your username and password</span>
-            <input type="email" placeholder="Email">
-            <input type="password" placeholder="Password">
-            <a href="#">Forgott Your Password?</a>
-            <button>Sign In</button>
-        </form>
-    </div>
-
-    <div class="toggle-container">
-        <div class="toggle">
-            <div class="toggle-panel toggle-left">
-                <h1>Welcome Back!</h1>
-                <p>Enter your personal details to use all of site features</p>
-                <button class="hidden" id="login">Sign In</button>
-            </div>
-
-            <div class="toggle-panel toggle-right">
-                <h1>Hello, Gym Rat!</h1>
-                <p>Register with your personal details to use all of site features</p>
-                <button class="hidden" id="register">Sign Up</button>
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Already a member?</h1>
+                    <p>Log in to keep the progress tracking!!</p>
+                    <button class="hidden" id="login">Login</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>Newbie?</h1>
+                    <p>Sign up for free and track the magic!!</p>
+                    <button class="hidden" id="register">Sign Up</button>
+                </div>
             </div>
         </div>
     </div>
 
+    <footer class="canvas-foot">
+        
+        <div class="canvas-container-f">
+            <canvas id="canv-f" width="32" height="32"></canvas>
+
+        </div>
+       
+        <!-- <div class="author-container">
+            <h3>PhysiqLife by Suren Fernando </h3>
+        </div> -->
+    </footer>
 
     <script src="/css/login.js"></script>
 </body>
