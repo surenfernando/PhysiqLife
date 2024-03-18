@@ -46,3 +46,4 @@ const Client = mongoose.model("Client", clientSchema);
 // Client.insertMany(Sample);
 
 export { Client };
+

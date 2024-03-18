@@ -57,6 +57,10 @@ app.get("/home", ensureAuthenticated, async (req, res) => {
   }
 });
 
+app.get("/nav",(req, res) => {
+  res.render("partials/navbar.ejs")
+});
+
 
 app.post("/signup", async (req, res) => {
   const dobString = req.body.DoB;
