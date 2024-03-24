@@ -29,19 +29,19 @@ Welcome to PhysiqLife, your ultimate companion in tracking your body recompositi
 To get started with PhysiqLife, follow these simple steps:
 
 1. Clone the repository to your local machine:
-git clone https://github.com/surenfernando/PhysiqLife
+(`git clone https://github.com/surenfernando/PhysiqLife`)
 
 2. Navigate to the project directory:
-cd PhysiqLife
+(`cd PhysiqLife`)
 
 3. Install dependencies using npm:
-npm install
+(`npm install`)
 
 4. Run the application using nodemon or node:
-nodemon index.js or node index.js
+(`nodemon index.js`) or (`node index.js`)
 
 
-5. Access the application by visiting [http://localhost:3000] in your web browser.
+5. Access the application by visiting (`http://localhost:3000`) in your web browser.
 
 
 
