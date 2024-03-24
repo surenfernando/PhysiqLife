@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <!--     Fonts and icons     -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+  
+    <!-- Main Styling -->
+    <link href="/css/main.css" rel="stylesheet" />
+  </head>
+
+
+    
+  <body class="m-0 text-base antialiased leading-default bg-gray-50 text-slate-500">
+    <!-- Canvas head with color shift -->
+    <div class="absolute w-full min-h-75">
+      <div class="canvas-container-h">
+        <canvas id="canv-h" width="32" height="32"></canvas>
+      </div>
+    </div>
+    
+    <!-- sidenav  -->
+    <%- include("partials/navbar.ejs") %>
+    <!-- end sidenav -->
+  
+    <script src="/js/dash-navbar-color.js"></script>
+  
+  </body>
+
+</html>

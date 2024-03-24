@@ -58,7 +58,9 @@ app.get("/home", ensureAuthenticated, async (req, res) => {
 });
 
 app.get("/nav",(req, res) => {
-  res.render("partials/navbar.ejs")
+  res.render("home",{
+    firstName : "Suren Fernando"
+  });
 });
 
 
