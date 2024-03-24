@@ -27,6 +27,150 @@
     <!-- sidenav  -->
     <%- include("partials/navbar.ejs") %>
     <!-- end sidenav -->
+
+
+    <main class="relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl">
+      <!-- Top Navbar -->
+      <%- include("partials/topNavDash.ejs") %>
+      <!-- end Top Navbar -->
+  
+      <!-- cards -->
+      <div class="w-full px-6 py-6 mx-auto">
+        <!-- Review cards - Row 1 : Makesure Data is passed before calling this partial-->
+        <%- include("partials/reviewCards.ejs") %>
+
+
+        <!-- cards row 2 -->
+        <div class="flex flex-wrap mt-6 -mx-3">
+          
+          <div class="w-full max-w-full px-3 mt-0 mb-6 lg:mb-0 lg:w-7/12 lg:flex-none">
+            <div class="relative flex flex-col min-w-0 break-words bg-white border-0 border-solid shadow-xl border-black-125 rounded-2xl bg-clip-border">
+              <div class="p-4 pb-0 mb-0 rounded-t-4">
+                <div class="flex justify-between">
+                  <h6 class="mb-2">Weekly Check-ins</h6>
+                </div>
+              </div>
+              <div class="overflow-x-auto">
+                <table class="items-center w-full mb-4 align-top border-collapse border-gray-200">
+                  <thead>
+                    <tr>
+                      <th class="p-2 align-middle bg-transparent border-b whitespace-nowrap">Date</th>
+                      <th class="p-2 align-middle bg-transparent border-b whitespace-nowrap">Weight</th>
+                      <th class="p-2 align-middle bg-transparent border-b whitespace-nowrap">Cheat meals</th>
+                      <th class="p-2 align-middle bg-transparent border-b whitespace-nowrap">Workouts</th>
+                      <th class="p-2 align-middle bg-transparent border-b whitespace-nowrap">Body Images</th>
+                      <th class="p-2 align-middle bg-transparent border-b whitespace-nowrap">Comments</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+  
+                    <!-- Row of weekly checkin -->
+                    <tr>
+                      <td class="p-2 align-middle bg-transparent border-b w-3/10 whitespace-nowrap">
+                        <div class="flex items-center px-2 py-1">
+                          <!-- <div>
+                            <img src="" alt="Profile Pic" />
+                          </div> -->
+                          <div class="ml-6">
+                            <h6 class="mb-0 text-sm leading-normal dark:text-white">12/02/2023</h6>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap">
+                        <div class="text-center">
+                          <h6 class="mb-0 text-sm leading-normal dark:text-white">54 kgs</h6>
+                        </div>
+                      </td>
+                      <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap">
+                        <div class="text-center">
+                          <h6 class="mb-0 text-sm leading-normal dark:text-white">3</h6>
+                        </div>
+                      </td>
+                      <td class="p-2 text-sm leading-normal align-middle bg-transparent border-b whitespace-nowrap">
+                        <div class="flex-1 text-center">
+                          <h6 class="mb-0 text-sm leading-normal dark:text-white">4 Days</h6>
+                        </div>
+                      </td>
+  
+                      <td class="p-2 text-sm leading-normal align-middle bg-transparent border-b whitespace-nowrap">
+                        <div class="flex-1 text-center">
+                          <h6 class="mb-0 text-sm leading-normal dark:text-white">View</h6>
+                        </div>
+                      </td>
+  
+                      <td class="p-2 text-sm leading-normal align-middle bg-transparent border-b whitespace-nowrap">
+                        <div class="flex-1 text-center">
+                          <h6 class="mb-0 text-sm leading-normal dark:text-white">Feeling quite hungry</h6>
+                        </div>
+                      </td>
+                    </tr>
+                    
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- images of body recomp -->
+          <div class="w-full max-w-full px-3 lg:w-5/12 lg:flex-none">
+            <div slider class="relative w-full h-full overflow-hidden rounded-2xl">
+              <!-- slide 1 -->
+              <div slide class="absolute w-full h-full transition-all duration-500">
+                <img class="object-cover h-full" src="../assets/img/compTemp.png" alt="carousel image" />
+                <div class="block text-start ml-12 left-0 bottom-0 absolute right-[15%] pt-5 pb-5 text-white">
+                  <h5 class="mb-1 text-white">Progress as of 12/03/2024</h5>
+                  <p class="dark:opacity-80">- Comments - </p>
+                </div>
+              </div>
+  
+              <!-- slide 2 -->
+              <div slide class="absolute w-full h-full transition-all duration-500">
+                <img class="object-cover h-full" src="../assets/img/compTemp.png" alt="carousel image" />
+                <div class="block text-start ml-12 left-0 bottom-0 absolute right-[15%] pt-5 pb-5 text-white">
+                  <h5 class="mb-1 text-white">Progress as of 12/03/2024</h5>
+                  <p class="dark:opacity-80">- Comments - </p>
+                </div>
+              </div>
+  
+              <!-- Control buttons NEEDS CHANGING - find better UI--> 
+              <button btn-next class="absolute z-10 w-10 h-10 p-2 text-lg text-white border-none opacity-50 cursor-pointer hover:opacity-100 far active:scale-110 top-6 right-4"> 
+                <span>
+                  <svg class="relative w-6 h-6" fill="#c0c0c0" height="200px" width="200px" version="1.1" id="XMLID_287_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="next"> <g> <polygon points="6.8,23.7 5.4,22.3 15.7,12 5.4,1.7 6.8,0.3 18.5,12 "></polygon> </g> </g> </g></svg>
+                </span>
+              </button>
+  
+              <button btn-prev class="absolute z-10 w-10 h-10 p-2 text-lg text-white border-none opacity-50 cursor-pointer hover:opacity-100 far active:scale-110 top-6 right-8"> 
+                <span>
+                  <svg class="relative w-6 h-6" fill="#c0c0c0" height="200px" width="200px" version="1.1" id="XMLID_54_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" xml:space="preserve" stroke="#c0c0c0"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="previous"> <g> <polygon points="17.2,23.7 5.4,12 17.2,0.3 18.5,1.7 8.4,12 18.5,22.3 "></polygon> </g> </g> </g></svg>
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <footer class="pt-4">
+          <div class="w-full px-6 mx-auto">
+            <div class="flex flex-wrap items-center -mx-3 lg:justify-between">
+              <div class="w-full max-w-full px-3 mt-0 mb-6 shrink-0 lg:mb-0 lg:w-1/2 lg:flex-none">
+                <div class="text-sm leading-normal text-center text-slate-500 lg:text-left">
+                  PhysiqLife ©
+                  <script>
+                    document.write(new Date().getFullYear() + ",");
+                  </script>
+                  a project by
+                  <a href="https://www.creative-tim.com" class="font-semibold text-slate-700 dark:text-white" target="_blank">Suren Fernando</a>
+                  
+                </div>
+              </div>
+            
+            </div>
+          </div>
+        </footer>
+        
+      </div>
+      <!-- end cards -->
+    </main>
   
     <script src="/js/dash-navbar-color.js"></script>
   
