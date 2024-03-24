@@ -2,3 +2,4 @@
 npm_debug.log
 .DS_Store
 /*.env
+/tailwind.config.js

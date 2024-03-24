@@ -57,6 +57,12 @@ app.get("/home", ensureAuthenticated, async (req, res) => {
   }
 });
 
+app.get("/nav",(req, res) => {
+  res.render("home",{
+    firstName : "Suren Fernando"
+  });
+});
+
 
 app.post("/signup", async (req, res) => {
   const dobString = req.body.DoB;
