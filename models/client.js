@@ -3,18 +3,28 @@ import mongoose from "mongoose";
 import passportLocalMongoose from "passport-local-mongoose";
 import passport from "passport";
 
+const goalSchema = new mongoose.Schema({
+    weight: Number,
+    calories: Number,
+    weeklyWorkouts: Number,
+    weeklyCardio: Number
+}, { autoCreate: false });
+
 const dlyCheckInSchema = new mongoose.Schema({
     date: {
         type: Date,
         required: true,
     },
     weight: {
-        type: String,
+        type: Number,
     },
     calories: {
-        type: String,
+        type: Number,
     },
-});
+    comment: {
+        type: String,
+    }
+}, { autoCreate: false });
 
 const wklyCheckInSchema = new mongoose.Schema({
     date: {
@@ -22,10 +32,13 @@ const wklyCheckInSchema = new mongoose.Schema({
         required: true,
     },
     workouts: {
-        type: String,
+        type: Number,
+    },
+    cheatmeals: {
+        type: Number,
     },
     cardio: {
-        type: String,
+        type: Number,
     },
     image: {
         type: String,
@@ -34,7 +47,7 @@ const wklyCheckInSchema = new mongoose.Schema({
     comment: {
         type: String,
     },
-});
+}, { autoCreate: false });
 
 const clientSchema = new mongoose.Schema({
     firstName: {
@@ -75,11 +88,14 @@ const clientSchema = new mongoose.Schema({
     weeklyCheckIns: {
         type: [wklyCheckInSchema],
     },
+    goals: goalSchema,
 });
 
 clientSchema.plugin(passportLocalMongoose);
 const Client = mongoose.model("Client", clientSchema);
 const Daily = mongoose.model("Daily", dlyCheckInSchema);
 const Weekly = mongoose.model("Weekly", wklyCheckInSchema);
+const Goals = mongoose.model("Goals", goalSchema);
 
-export { Client, Weekly, Daily };
+
+export { Client, Weekly, Daily, Goals };

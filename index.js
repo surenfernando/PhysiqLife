@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 import * as dotenv from "dotenv";
 import session from "express-session";
 import passport from "passport";
-import { Client, Daily, Weekly } from "./models/index.js";
+import { Client, Daily, Weekly, Goals } from "./models/index.js";
 
 dotenv.config();
 
@@ -77,9 +77,35 @@ app.get("/checkin", (req, res) => {
 });
 
 // POST ROUTES
+app.post("/setGoal", ensureAuthenticated, async (req, res) => {
+    try {
+        const { weight, calories, workouts, cardio } = req.body;
+
+        const newGoals = new Goals({
+            weight: weight,
+            calories: calories,
+            weeklyWorkouts: workouts,
+            weeklyCardio: cardio
+        });
+
+        //Look for client object
+        const clientId = req.user.id;
+        const foundClient = await Client.findById(clientId);
+
+        if (foundClient) {
+            foundClient.goals = newGoals;
+            await foundClient.save();
+            res.redirect("/checkin");
+        }
+    } catch (err) {
+        console.log(err);
+    }
+});
+
 app.post("/dailyCheck", ensureAuthenticated, async (req, res) => {
     try {
         const { date, weight, calories } = req.body;
+
 
         // Create a new daily check-in object using the Daily
         const newDailyCheckIn = new Daily({
