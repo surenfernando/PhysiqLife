@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check-ins - <%= firstName %></title>
+    <link href="/css/main.css" rel="stylesheet" />
+</head>
+<body class="m-0 text-base antialiased leading-default bg-gray-50 text-slate-500">
+    
+    <%- include("partials/navbar.ejs") %>
+    <main class="relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl">
+        <form action="/dailyCheck" method="post">
+            <h3>Submit Daily Check-ins</h3>
+            <input type="date" placeholder="Date" name="date">
+            <input type="text" placeholder="Weight" name="weight">
+            <input type="text" placeholder="Calories" name="calories">
+            <button type="submit">Submit Daily Check-in</button> 
+        </form>
+
+        <form action="/weeklyCheck" method="post">
+            <h3>Submit Weekly Check-ins</h3>
+            <input type="date" placeholder="Date" name="date">
+            <input type="text" placeholder="Workouts" name="workouts">
+            <input type="text" placeholder="Cardio" name="cardio">
+            <input type="text" placeholder="Comments" name="comment">
+            <button type="submit">Submit Weekly Check-in</button> 
+        </form>
+    </main>
+</body>
+</html>

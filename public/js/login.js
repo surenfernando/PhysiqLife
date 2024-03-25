@@ -17,6 +17,10 @@ var chContext = ch.getContext('2d');
 var cf = document.getElementById('canv-f');
 var cfContext = cf.getContext('2d');
 
+function submitToRoute(route) {
+  document.getElementById('loginForm').action = route;
+  document.getElementById('loginForm').submit();
+}
 
 var colHeader = function(x, y, r, g, b) {
   //Header-Canvas

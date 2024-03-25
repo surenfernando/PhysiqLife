@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { Client } from "./client.js";
+import { Client, Daily, Weekly } from "./client.js";
 
 // Export all models
-export { Client };
+export { Client, Daily, Weekly };

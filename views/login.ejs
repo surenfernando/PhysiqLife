@@ -32,14 +32,14 @@
             </form>            
         </div>
         <div class="form-container sign-in">
-            <form method="POST" action="/login">
+            <form id="loginForm" method="POST" action="">
                 <h1>Login</h1>
                 <input type="email" placeholder="Email" name="username">
                 <input type="password" placeholder="Password" name="password">
                 <a href="#">Forget Your Password?</a>
-                <button>Login</button>
+                <button type="button" onclick="submitToRoute('/login')">Login</button>
                 <a href="#">Login as a guest (No sign-up)?</a>
-                <button>Guest Login</button>
+                <button type="button" onclick="submitToRoute('/guest')">Guest Login</button>
             </form>
         </div>
         <div class="toggle-container">

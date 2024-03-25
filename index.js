@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 import * as dotenv from "dotenv";
 import session from "express-session";
 import passport from "passport";
-import { Client } from "./models/index.js";
+import { Client, Daily, Weekly } from "./models/index.js";
 
 dotenv.config();
 
@@ -40,13 +40,18 @@ function ensureAuthenticated(req, res, next) {
 
 app.get("/", async (req, res) => {
   const result = await Client.find().select('+hash +salt');
-  console.log(result);
-  res.render("login");
+  if (req.isAuthenticated()) {
+    // If user is authenticated, redirect to "/home"
+    return res.redirect("/home");
+  } else {
+    // If user is not authenticated, redirect to "/login"
+    res.render("login");
+  }  
 });
 
 app.get("/home", ensureAuthenticated, async (req, res) => {
   const result = await Client.find();
-  console.log(result);
+  // console.log(result);
   try {
     const user = req.user; 
     res.render("home", { 
@@ -62,6 +67,71 @@ app.get("/nav",(req, res) => {
     firstName : "Suren Fernando"
   });
 });
+
+
+app.get("/checkin",(req, res) => {
+  res.render("checkIns",{
+    firstName : "Suren Fernando"
+  });
+});
+
+
+
+// POST ROUTES
+app.post("/dailyCheck", ensureAuthenticated, async (req, res) => {
+  try {
+    const { date, weight, calories } = req.body;
+
+    // Create a new daily check-in object using the Daily
+    const newDailyCheckIn = new Daily({
+      date: new Date(date), // Convert date string to Date object
+      weight,
+      calories
+    });
+
+    //Look for client object
+    const clientId = req.user.id;
+    const foundClient = await Client.findById(clientId);
+    
+    console.log("Check here");
+
+    if (foundClient) {
+      foundClient.dailyCheckIns.push(newDailyCheckIn);
+      await foundClient.save();
+      res.redirect("/checkin");
+    }
+  } catch (err) {
+      console.log(err);
+  }
+});
+
+
+app.post("/weeklyCheck", ensureAuthenticated, async (req, res) => {
+  try {
+    const { date, workouts, cardio, comment } = req.body;
+
+    // Create a new weekly check-in object using the Weekly
+    const newDailyCheckIn = new Weekly({
+      date: new Date(date), // Convert date string to Date object
+      workouts,
+      cardio,
+      comment
+    });
+
+    //Look for client object
+    const clientId = req.user.id;
+    const foundClient = await Client.findById(clientId);
+    
+    if (foundClient) {
+      foundClient.weeklyCheckIns.push(newDailyCheckIn);
+      await foundClient.save();
+      res.redirect("/checkin");
+    }
+  } catch (err) {
+      console.log(err);
+  }
+});
+
 
 
 app.post("/signup", async (req, res) => {
@@ -100,13 +170,38 @@ app.post("/signup", async (req, res) => {
 });
 
 
+app.post("/guest", async function(req, res) {
+  req.body.username = "guest@gmail.com";
+  req.body.password = "jackie";
 
+  const username = req.body.username;
+  const password = req.body.password;
+
+  const guest = new Client({
+      username: username,
+      password: password      
+  });
+
+  req.login(guest, function(err){
+    if (err) {
+      console.log(err);
+      res.redirect("/");
+    } else {
+      passport.authenticate("local", {
+      failureRedirect: "/"
+      })(req, res, function(){
+        res.redirect("/home");
+      });     
+    };
+  });
+});
 
 
 
 app.post("/login", async function(req, res) {
   const username = req.body.username;
   const password = req.body.password;
+  
 
   const client = new Client({
       username: username,
@@ -115,12 +210,14 @@ app.post("/login", async function(req, res) {
 
   req.login(client, function(err){
       if (err) {
-          console.log(err);
-          res.redirect("/");
+        console.log(err);
+        res.redirect("/");
       } else {
-          passport.authenticate("local")(req, res, function(){
-              res.redirect("/home");
-          });     
+        passport.authenticate("local", {
+          failureRedirect: "/"
+        })(req, res, function(){
+            res.redirect("/home");
+        });     
       };
   });
 });
