@@ -4,47 +4,36 @@ Welcome to PhysiqLife, your ultimate companion in tracking your body recompositi
 
 ## Features
 
-- **Track Progress**: Log your daily body measurements, weight, and progress photos to keep track of your journey over time.
-  
-- **Set Goals**: Define your fitness goals and track your progress towards achieving them.
-  
-- **Visualize Data**: View comprehensive charts and graphs to visualize your progress and identify trends.
-  
-- **User Authentication**: Securely register and login to your account to access your personal data.
-  
-- **Trainer and Client Management**: Extend the application by adding a feature to connect trainers with clients, enabling trainers to monitor and guide their clients' progress.
+-   **Track Progress**: Log your daily body measurements, weight, and progress photos to keep track of your journey over time.
+-   **Set Goals**: Define your fitness goals and track your progress towards achieving them.
+-   **Visualize Data**: View comprehensive charts and graphs to visualize your progress and identify trends.
+-   **User Authentication**: Securely register and login to your account to access your personal data.
+-   **Trainer and Client Management**: Extend the application by adding a feature to connect trainers with clients, enabling trainers to monitor and guide their clients' progress.
 
 ## Technologies Used
 
-- Node.js: JavaScript runtime environment.
-  
-- Express: Web application framework for Node.js.
-  
-- Mongoose: Elegant MongoDB object modeling for Node.js.
-  
-- MongoDB: NoSQL database for storing user data and progress metrics.
+-   Node.js: JavaScript runtime environment.
+-   Express: Web application framework for Node.js.
+-   Mongoose: Elegant MongoDB object modeling for Node.js.
+-   MongoDB: NoSQL database for storing user data and progress metrics.
 
 ## Getting Started
 
 To get started with PhysiqLife, follow these simple steps:
 
 1. Clone the repository to your local machine:
-(`git clone https://github.com/surenfernando/PhysiqLife`)
+   (`git clone https://github.com/surenfernando/PhysiqLife`)
 
 2. Navigate to the project directory:
-(`cd PhysiqLife`)
+   (`cd PhysiqLife`)
 
 3. Install dependencies using npm:
-(`npm install`)
+   (`npm install`)
 
 4. Run the application using nodemon or node:
-(`nodemon index.js`) or (`node index.js`)
-
+   (`nodemon index.js`) or (`node index.js`)
 
 5. Access the application by visiting (`http://localhost:3000`) in your web browser.
-
-
-
 
 ## Contributing
 
@@ -64,4 +53,3 @@ This project is licensed under the [MIT License](LICENSE).
 ## Acknowledgements
 
 PhysiqLife was created with love by Suren Fernando. Thank you for reading.
-
