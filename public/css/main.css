@@ -876,6 +876,10 @@ h6 {
     margin-top: 1.5rem;
 }
 
+.mt-8 {
+    margin-top: 2rem;
+}
+
 .ml-12 {
     margin-left: 3rem;
 }
@@ -914,6 +918,10 @@ h6 {
 
 .-mt-6 {
     margin-top: -1.5rem;
+}
+
+.-mt-8 {
+    margin-top: -2rem;
 }
 
 .-mr-px {
@@ -2520,6 +2528,16 @@ h6 {
     color: rgb(52 71 103 / var(--tw-text-opacity));
 }
 
+.text-multi-500 {
+    --tw-text-opacity: 1;
+    color: linear-gradient(
+        254deg,
+        rgba(131, 58, 180, 1) 0%,
+        rgba(253, 29, 29, 1) 75%,
+        rgba(252, 176, 69, 1) 100%
+    )
+}
+
 .text-blue-500 {
     --tw-text-opacity: 1;
     color: rgb(94 114 228 / var(--tw-text-opacity));
@@ -3466,6 +3484,17 @@ h6 {
 
 .hover\:bg-white\/10:hover {
     background-color: rgb(255 255 255 / 0.1);
+}
+
+.hover\:bg-blue-500:hover {
+    --tw-bg-opacity: 1;
+    background: rgb(131, 58, 180);
+    background: linear-gradient(
+        254deg,
+        rgba(131, 58, 180, 1) 0%,
+        rgba(253, 29, 29, 1) 75%,
+        rgba(252, 176, 69, 1) 100%
+    );
 }
 
 .hover\:bg-slate-700:hover {

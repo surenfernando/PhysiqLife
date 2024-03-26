@@ -40,6 +40,49 @@
         <%- include("partials/reviewCards.ejs") %>
 
 
+        <div class="flex flex-wrap mt-8 -mx-3">
+          <div class="w-full max-w-full px-3 mt-0 mb-6 lg:mb-0 lg:w-full lg:flex-none">
+            <div class="relative flex flex-col min-w-0 break-words bg-white border-0 border-solid shadow-xl border-black-125 rounded-2xl bg-clip-border">
+              <div class="p-4 mb-0 rounded-t-4 items-center" x-data="{ weight: false, cals: false, workt: false, cardio: false, goal: false }">
+                <h6>Quick Daily Track</h6>
+                <div class="flex justify-between">
+                  <button class="select-none" @click="weight = true; cals = false, workt = false, cardio = false, goal = false"> Add Weight </button>
+                  <!-- Dialog (full screen) -->
+                  <div class="fixed inset-0 z-990 top-0 left-0 flex items-center justify-center w-full h-full" style="background-color: rgba(0,0,0,.5);" x-show="weight">
+                    <%- include("partials/addWeight.ejs") %>
+                  </div>
+
+                  <button class="select-none" @click="weight = false; cals = true, workt = false, cardio = false, goal = false"> Add Calories </button>
+                  <!-- Dialog (full screen) -->
+                  <div class="fixed inset-0 z-990 top-0 left-0 flex items-center justify-center w-full h-full" style="background-color: rgba(0,0,0,.5);" x-show="cals">
+                    <%- include("partials/addCalories.ejs") %>
+                  </div>
+
+                  <button class="select-none" @click="weight = false; cals = false, workt = true, cardio = false, goal = false"> Add Workout </button>
+                  <!-- Dialog (full screen) -->
+                  <div class="fixed inset-0 z-990 top-0 left-0 flex items-center justify-center w-full h-full" style="background-color: rgba(0,0,0,.5);" x-show="workt">
+                    <%- include("partials/addWorkout.ejs") %>
+                  </div>
+
+                  <button class="select-none" @click="weight = false; cals = false, workt = false, cardio = true, goal = false"> Add Cardio </button>
+                  <!-- Dialog (full screen) -->
+                  <div class="fixed inset-0 z-990 top-0 left-0 flex items-center justify-center w-full h-full" style="background-color: rgba(0,0,0,.5);" x-show="cardio">
+                    <%- include("partials/addCardio.ejs") %>
+                  </div>
+
+                  <button class="select-none" @click="weight = false; cals = false, workt = false, cardio = false, goal = true"> Change Goals </button>
+                  <!-- Dialog (full screen) -->
+                  <div class="fixed inset-0 z-990 top-0 left-0 flex items-center justify-center w-full h-full" style="background-color: rgba(0,0,0,.5);" x-show="goal">
+                    <%- include("partials/chngGoals.ejs") %>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
         <!-- cards row 2 -->
         <div class="flex flex-wrap min-h-75 mt-6 -mx-3">
           
@@ -223,7 +266,8 @@
       </div>
       <!-- end cards -->
     </main>
-  
+
+    <script  defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.7/dist/cdn.min.js"></script>
     <script src="/js/dash-navbar-color.js"></script>
     <script src="/js/logout.js" async></script>
   
