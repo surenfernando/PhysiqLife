@@ -3,51 +3,60 @@ import mongoose from "mongoose";
 import passportLocalMongoose from "passport-local-mongoose";
 import passport from "passport";
 
-const goalSchema = new mongoose.Schema({
-    weight: Number,
-    calories: Number,
-    weeklyWorkouts: Number,
-    weeklyCardio: Number
-}, { autoCreate: false });
+const goalSchema = new mongoose.Schema(
+    {
+        weight: Number,
+        calories: Number,
+        weeklyWorkouts: Number,
+        weeklyCardio: Number,
+    },
+    { autoCreate: false },
+);
 
-const dlyCheckInSchema = new mongoose.Schema({
-    date: {
-        type: Date,
-        required: true,
+const dlyCheckInSchema = new mongoose.Schema(
+    {
+        date: {
+            type: Date,
+            required: true,
+        },
+        weight: {
+            type: Number,
+        },
+        calories: {
+            type: Number,
+        },
+        comment: {
+            type: String,
+        },
     },
-    weight: {
-        type: Number,
-    },
-    calories: {
-        type: Number,
-    },
-    comment: {
-        type: String,
-    }
-}, { autoCreate: false });
+    { autoCreate: false },
+);
 
-const wklyCheckInSchema = new mongoose.Schema({
-    date: {
-        type: Date,
-        required: true,
+const wklyCheckInSchema = new mongoose.Schema(
+    {
+        date: {
+            type: Date,
+            required: true,
+        },
+        workouts: {
+            type: Number,
+        },
+        cheatmeals: {
+            type: Number,
+        },
+        cardio: {
+            type: Number,
+        },
+        image: {
+            type: String,
+            default: null,
+        },
+        comment: {
+            type: String,
+        },
     },
-    workouts: {
-        type: Number,
-    },
-    cheatmeals: {
-        type: Number,
-    },
-    cardio: {
-        type: Number,
-    },
-    image: {
-        type: String,
-        default: null,
-    },
-    comment: {
-        type: String,
-    },
-}, { autoCreate: false });
+    { autoCreate: false },
+);
 
 const clientSchema = new mongoose.Schema({
     firstName: {
@@ -96,6 +105,5 @@ const Client = mongoose.model("Client", clientSchema);
 const Daily = mongoose.model("Daily", dlyCheckInSchema);
 const Weekly = mongoose.model("Weekly", wklyCheckInSchema);
 const Goals = mongoose.model("Goals", goalSchema);
-
 
 export { Client, Weekly, Daily, Goals };

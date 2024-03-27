@@ -77,6 +77,94 @@ app.get("/checkin", (req, res) => {
 });
 
 // POST ROUTES
+app.post("/addWeight", ensureAuthenticated, async (req, res) => {
+    try {
+        const { date, weight } = req.body;
+        // Parse the date string into a Date object
+        const checkInDate = new Date(date);
+
+        // Find the user by ID
+        const user = await Client.findById(req.user.id);
+
+        // Find the index of the daily check-in entry for the given date
+        const index = user.dailyCheckIns.findIndex((entry) => {
+            const entryDate = entry.date;
+            // Compare the date components - just the date ignore time
+            return (
+                entryDate.getDate() === checkInDate.getDate() &&
+                entryDate.getMonth() === checkInDate.getMonth() &&
+                entryDate.getFullYear() === checkInDate.getFullYear()
+            );
+        });
+
+        if (index !== -1) {
+            // If the entry exists, update the weight
+            user.dailyCheckIns[index].weight = weight;
+            user.dailyCheckIns[index].date = checkInDate;
+        } else {
+            // If the entry doesn't exist, create a new one
+            const newDailyCheckIn = new Daily({
+                date: checkInDate,
+                weight,
+                calories: 0,
+            });
+            user.dailyCheckIns.push(newDailyCheckIn);
+        }
+
+        // Save the updated user object
+        await user.save();
+
+        res.redirect("/home"); // Redirect to the home page after the operation is complete
+    } catch (err) {
+        console.error(err);
+        res.sendStatus(500);
+    }
+});
+
+app.post("/addCalories", ensureAuthenticated, async (req, res) => {
+    try {
+        const { date, calories } = req.body;
+        // Parse the date string into a Date object
+        const checkInDate = new Date(date);
+        
+        // Find the user by ID
+        const user = await Client.findById(req.user.id);
+
+        // Find the index of the daily check-in entry for the given date
+        const index = user.dailyCheckIns.findIndex((entry) => {
+            const entryDate = entry.date;
+            // Compare the date components - just the date ignore time
+            return (
+                entryDate.getDate() === checkInDate.getDate() &&
+                entryDate.getMonth() === checkInDate.getMonth() &&
+                entryDate.getFullYear() === checkInDate.getFullYear()
+            );
+        });
+
+        if (index !== -1) {
+            // If the entry exists, update the weight
+            user.dailyCheckIns[index].calories = calories;
+            user.dailyCheckIns[index].date = checkInDate;
+        } else {
+            // If the entry doesn't exist, create a new one
+            const newDailyCheckIn = new Daily({
+                date: checkInDate,
+                weight: 0,
+                calories,
+            });
+            user.dailyCheckIns.push(newDailyCheckIn);
+        }
+
+        // Save the updated user object
+        await user.save();
+
+        res.redirect("/home"); // Redirect to the home page after the operation is complete
+    } catch (err) {
+        console.error(err);
+        res.sendStatus(500);
+    }
+});
+
 app.post("/setGoal", ensureAuthenticated, async (req, res) => {
     try {
         const { weight, calories, workouts, cardio } = req.body;
@@ -85,7 +173,7 @@ app.post("/setGoal", ensureAuthenticated, async (req, res) => {
             weight: weight,
             calories: calories,
             weeklyWorkouts: workouts,
-            weeklyCardio: cardio
+            weeklyCardio: cardio,
         });
 
         //Look for client object
@@ -105,7 +193,6 @@ app.post("/setGoal", ensureAuthenticated, async (req, res) => {
 app.post("/dailyCheck", ensureAuthenticated, async (req, res) => {
     try {
         const { date, weight, calories } = req.body;
-
 
         // Create a new daily check-in object using the Daily
         const newDailyCheckIn = new Daily({
