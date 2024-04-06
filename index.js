@@ -52,12 +52,29 @@ app.get("/", async (req, res) => {
 });
 
 app.get("/home", ensureAuthenticated, async (req, res) => {
-    const result = await Client.find();
-    // console.log(result);
     try {
-        const user = req.user;
+        //Get today date
+        const checkInDate = new Date();
+        // Find the user by ID
+        const user = await Client.findById(req.user.id);
+        
+        // Find the index of the daily check-in entry for the given date
+        const index = user.dailyCheckIns.findIndex((entry) => {
+            const entryDate = new Date(entry.date);
+            // Compare the date components - just the date ignore time
+            return (
+                entryDate.getDate() === checkInDate.getDate() &&
+                entryDate.getMonth() === checkInDate.getMonth() &&
+                entryDate.getFullYear() === checkInDate.getFullYear()
+            );
+        });
+
+        console.log(index);
+        console.log(user.dailyCheckIns[1]);
+
         res.render("home", {
             firstName: user.firstName,
+            dailyData: user.dailyCheckIns[1]
         });
     } catch (error) {
         console.error(error);
@@ -83,6 +100,7 @@ app.post("/addWeight", ensureAuthenticated, async (req, res) => {
         // Parse the date string into a Date object
         const checkInDate = new Date(date);
 
+    
         // Find the user by ID
         const user = await Client.findById(req.user.id);
 
@@ -96,7 +114,7 @@ app.post("/addWeight", ensureAuthenticated, async (req, res) => {
                 entryDate.getFullYear() === checkInDate.getFullYear()
             );
         });
-
+        
         if (index !== -1) {
             // If the entry exists, update the weight
             user.dailyCheckIns[index].weight = weight;
@@ -113,7 +131,6 @@ app.post("/addWeight", ensureAuthenticated, async (req, res) => {
 
         // Save the updated user object
         await user.save();
-
         res.redirect("/home"); // Redirect to the home page after the operation is complete
     } catch (err) {
         console.error(err);
