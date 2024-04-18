@@ -212,29 +212,32 @@
                   <tbody>
   
                     <!-- Row of daily checkin -->
-                    <tr>
-                      <td class="p-2 align-middle bg-transparent border-b w-3/10 whitespace-nowrap">
-                          <div class="text-center ">
-                            <h6 class="mb-0 text-sm leading-normal dark:text-white">12/02/2023</h6>
+                    <% dailyDataPool.forEach(element => { %>
+                      <tr>
+                        <td class="p-2 align-middle bg-transparent border-b w-3/10 whitespace-nowrap">
+                            <div class="text-center ">
+                              <h6 class="mb-0 text-sm leading-normal dark:text-white"> <%- element.date %> </h6>
+                            </div>
+                        </td>
+                        <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap">
+                          <div class="text-center">
+                            <h6 class="mb-0 text-sm leading-normal dark:text-white"><%- element.weight.weight %> kgs</h6>
                           </div>
-                      </td>
-                      <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap">
-                        <div class="text-center">
-                          <h6 class="mb-0 text-sm leading-normal dark:text-white">54 kgs</h6>
-                        </div>
-                      </td>
-                      <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap">
-                        <div class="text-center">
-                          <h6 class="mb-0 text-sm leading-normal dark:text-white">2300</h6>
-                        </div>
-                      </td>
-  
-                      <td class="p-2 text-sm leading-normal align-middle bg-transparent border-b whitespace-nowrap">
-                        <div class="flex-1 text-center">
-                          <h6 class="mb-0 text-sm leading-normal dark:text-white">Feeling quite hungry</h6>
-                        </div>
-                      </td>
-                    </tr>
+                        </td>
+                        <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap">
+                          <div class="text-center">
+                            <h6 class="mb-0 text-sm leading-normal dark:text-white"><%- element.calories.calories %></h6>
+                          </div>
+                        </td>
+    
+                        <td class="p-2 text-sm leading-normal align-middle bg-transparent border-b whitespace-nowrap">
+                          <div class="flex-1 text-center">
+                            <h6 class="mb-0 text-sm leading-normal dark:text-white">No Comments</h6>
+                          </div>
+                        </td>
+                      </tr>
+                    <% }) %>
+                    
                     
                     
                   </tbody>

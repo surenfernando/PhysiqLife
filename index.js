@@ -59,6 +59,18 @@ function matchDateIndex(searchDate, searchArray){
     return index;
 }
 
+
+// Get server-side date for comparison
+function getMyDate(){
+    const tempDate = new Date();
+    tempDate.setMinutes(
+        tempDate.getMinutes() - tempDate.getTimezoneOffset(),
+    );
+    const temp = tempDate.toISOString();
+    const today = new Date(temp);
+    return today;
+}
+
 app.get("/", async (req, res) => {
     const result = await Client.find().select("+hash +salt");
     if (req.isAuthenticated()) {
@@ -73,25 +85,21 @@ app.get("/", async (req, res) => {
 app.get("/home", ensureAuthenticated, async (req, res) => {
     try {
         const user = await Client.findById(req.user.id);
-
-        const tempDate = new Date();
-        tempDate.setMinutes(
-            tempDate.getMinutes() - tempDate.getTimezoneOffset(),
-        );
-        const temp = tempDate.toISOString();
-        const today = new Date(temp);
-
+        const today = getMyDate();
         console.log(today);
 
         const index = matchDateIndex(today, user.dailyCheckIns);
-        console.log(user.dailyCheckIns);
+        console.log(user.dailyCheckIns[0].date);
         const dailyStats = user.dailyCheckIns[index];
+        const userGoals = user.goals;
 
         console.log(index);
 
         res.render("home", {
             firstName: user.firstName,
-            dailyData: dailyStats
+            dailyData: dailyStats,
+            dailyDataPool: user.dailyCheckIns,
+            goals: userGoals
         });
 
     } catch (error) {
