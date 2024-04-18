@@ -3,15 +3,65 @@ import mongoose from "mongoose";
 import passportLocalMongoose from "passport-local-mongoose";
 import passport from "passport";
 
-const goalSchema = new mongoose.Schema(
+
+
+const weightSchema = new mongoose.Schema(
     {
         weight: Number,
-        calories: Number,
-        weeklyWorkouts: Number,
-        weeklyCardio: Number,
+        date: {
+            type: Date,
+            required: true,
+        },
     },
     { autoCreate: false },
 );
+
+const caloriesSchema = new mongoose.Schema(
+    {
+        calories: Number,
+        date: {
+            type: Date,
+            required: true,
+        },
+    },
+    { autoCreate: false },
+);
+
+const workoutSchema = new mongoose.Schema(
+    {
+        workouts: Number,
+        date: {
+            type: Date,
+            required: true,
+        },
+    },
+    { autoCreate: false },
+);
+
+
+const cardioSchema = new mongoose.Schema(
+    {
+        cardio: Number,
+        date: {
+            type: Date,
+            required: true,
+        },
+    },
+    { autoCreate: false },
+);
+
+
+
+const goalSchema = new mongoose.Schema(
+    {
+        weight: weightSchema,
+        calories: caloriesSchema,
+        weeklyWorkouts: workoutSchema,
+        weeklyCardio: cardioSchema,
+    },
+    { autoCreate: false },
+);
+
 
 const dlyCheckInSchema = new mongoose.Schema(
     {
@@ -19,12 +69,10 @@ const dlyCheckInSchema = new mongoose.Schema(
             type: Date,
             required: true,
         },
-        weight: {
-            type: Number,
-        },
-        calories: {
-            type: Number,
-        },
+        weight: weightSchema,
+        calories: caloriesSchema,
+        workouts: workoutSchema,
+        cardio: cardioSchema,
         comment: {
             type: String,
         },
@@ -38,15 +86,11 @@ const wklyCheckInSchema = new mongoose.Schema(
             type: Date,
             required: true,
         },
-        workouts: {
-            type: Number,
-        },
+        workouts: workoutSchema,
         cheatmeals: {
             type: Number,
         },
-        cardio: {
-            type: Number,
-        },
+        cardio: cardioSchema,
         image: {
             type: String,
             default: null,
@@ -54,6 +98,7 @@ const wklyCheckInSchema = new mongoose.Schema(
         comment: {
             type: String,
         },
+        dailyCheck: dlyCheckInSchema,
     },
     { autoCreate: false },
 );
@@ -105,5 +150,9 @@ const Client = mongoose.model("Client", clientSchema);
 const Daily = mongoose.model("Daily", dlyCheckInSchema);
 const Weekly = mongoose.model("Weekly", wklyCheckInSchema);
 const Goals = mongoose.model("Goals", goalSchema);
+const Weight = mongoose.model("Weight", weightSchema);
+const Calories = mongoose.model("Calories", caloriesSchema);
+const Workout = mongoose.model("Workout", workoutSchema);
+const Cardio = mongoose.model("Cardio", cardioSchema);
 
-export { Client, Weekly, Daily, Goals };
+export { Client, Weekly, Daily, Goals, Weight, Calories, Workout, Cardio };
