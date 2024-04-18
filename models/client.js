@@ -71,6 +71,8 @@ const dlyCheckInSchema = new mongoose.Schema(
         },
         weight: weightSchema,
         calories: caloriesSchema,
+        workouts: workoutSchema,
+        cardio: cardioSchema,
         comment: {
             type: String,
         },
@@ -150,6 +152,7 @@ const Weekly = mongoose.model("Weekly", wklyCheckInSchema);
 const Goals = mongoose.model("Goals", goalSchema);
 const Weight = mongoose.model("Weight", weightSchema);
 const Calories = mongoose.model("Calories", caloriesSchema);
+const Workout = mongoose.model("Workout", workoutSchema);
+const Cardio = mongoose.model("Cardio", cardioSchema);
 
-
-export { Client, Weekly, Daily, Goals, Weight, Calories };
+export { Client, Weekly, Daily, Goals, Weight, Calories, Workout, Cardio };
