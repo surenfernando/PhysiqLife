@@ -89,10 +89,11 @@ app.get("/home", ensureAuthenticated, async (req, res) => {
         console.log(today);
 
         const index = matchDateIndex(today, user.dailyCheckIns);
-        console.log(user.dailyCheckIns[0].date);
+        // console.log(user.dailyCheckIns[0].date);
         const dailyStats = user.dailyCheckIns[index];
         const userGoals = user.goals;
 
+        console.log(user.dailyCheckIns);
         console.log(index);
 
         res.render("home", {
