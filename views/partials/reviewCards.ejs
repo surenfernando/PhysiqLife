@@ -7,7 +7,7 @@
             <div class="flex-none w-2/3 max-w-full px-3">
               <div>
                 <p class="mb-0 font-sans text-sm font-semibold leading-normal uppercase">Today's Weight</p>
-                <h5 class="mb-2 font-bold"><%- dailyData.weight.weight %>kg</h5>
+                <h5 class="mb-2 font-bold"><%- (dailyData?.weight?.weight || 'N/A') %>kg</h5>
                 <p class="mb-0">
                   <% if (goals.weight.weight !== 0 && goals.weight.weight !== null) { %>
                     <span class="text-sm font-bold leading-normal text-emerald-500"><%- goals.weight.weight %>kg</span> is the goal
@@ -42,7 +42,7 @@
             <div class="flex-none w-2/3 max-w-full px-3">
               <div>
                 <p class="mb-0 font-sans text-sm font-semibold leading-normal uppercase">Today's Calories</p>
-                <h5 class="mb-2 font-bold"> <%- dailyData.calories.calories %></h5>
+                <h5 class="mb-2 font-bold"> <%- (dailyData?.calories?.calories || 'N/A') %></h5>
                 <p class="mb-0">
                   <% if (goals.calories.calories !== 0 && goals.calories.calories !== null) { %>
                     <span class="text-sm font-bold leading-normal text-emerald-500"><%- goals.calories.calories %> kCal</span> is the goal
@@ -71,7 +71,7 @@
             <div class="flex-none w-2/3 max-w-full px-3">
               <div>
                 <p class="mb-0 font-sans text-sm font-semibold leading-normal uppercase">Weekly Workouts</p>
-                <h5 class="mb-2 font-bold"> <%- dailyData.workouts.workouts %> </h5>
+                <h5 class="mb-2 font-bold"> <%-  (dailyData?.workouts?.workouts || 'N/A') %> </h5>
                 <p class="mb-0">
                   <% if (goals.weeklyWorkouts.workouts !== 0 && goals.weeklyWorkouts.workouts !== null) { %>
                     <span class="text-sm font-bold leading-normal text-emerald-500"><%- goals.weeklyWorkouts.workouts %> Workouts</span> is the goal
@@ -100,7 +100,7 @@
             <div class="flex-none w-2/3 max-w-full px-3">
               <div>
                 <p class="mb-0 font-sans text-sm font-semibold leading-normal uppercase">Weekly Cardio</p>
-                <h5 class="mb-2 font-bold"><%- dailyData.cardio.cardio %></h5>
+                <h5 class="mb-2 font-bold"><%- (dailyData?.cardio?.cardio || 'N/A') %></h5>
                 <p class="mb-0">
                   <% if (goals.weeklyCardio.cardio !== 0 && goals.weeklyCardio.cardio !== null) { %>
                     <span class="text-sm font-bold leading-normal text-emerald-500"><%- goals.weeklyCardio.cardio %> Sessions</span> is the goal

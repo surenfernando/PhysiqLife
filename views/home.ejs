@@ -14,7 +14,7 @@
     <link href="/css/main.css" rel="stylesheet" />
   </head>
 
-
+  
     
   <body class="m-0 text-base antialiased leading-default bg-gray-50 text-slate-500">
     <!-- Canvas head with color shift -->
@@ -221,12 +221,12 @@
                         </td>
                         <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap">
                           <div class="text-center">
-                            <h6 class="mb-0 text-sm leading-normal dark:text-white"><%- element.weight.weight %> kgs</h6>
+                            <h6 class="mb-0 text-sm leading-normal dark:text-white"><%- (element.weight?.weight || '-') %> kgs</h6>
                           </div>
                         </td>
                         <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap">
                           <div class="text-center">
-                            <h6 class="mb-0 text-sm leading-normal dark:text-white"><%- element.calories.calories %></h6>
+                            <h6 class="mb-0 text-sm leading-normal dark:text-white"><%- (element.calories?.calories || '-') %></h6>
                           </div>
                         </td>
     
